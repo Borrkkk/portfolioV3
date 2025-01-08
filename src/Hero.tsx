@@ -1,8 +1,10 @@
 import React from 'react';
 import {useState, useEffect} from 'react'
 import Photo from './Photo.tsx';
-const cardHeight = 350;
-const cardWidth = 250;
+
+const height = window.innerHeight;
+const cardHeight = height * 0.35;
+const cardWidth = cardHeight * .75;
 function Hero() {
     const [scrollY, setScrollY] = useState(0);
     
@@ -13,10 +15,10 @@ function Hero() {
 
     //will offset scrollY
     function getScale(delay: number = 0){
-        return Math.max(1, Math.min(2, 2 - (scrollY - delay) / 1000));
+        return Math.max(1, Math.min(2, 2 - (scrollY - delay) / (height * .7)));
     }
     function getOpacity(delay: number = 0){
-        return Math.min(1, Math.max(0, (scrollY - delay) / 1000));
+        return Math.min(1, Math.max(0, (scrollY - delay) / (height * .7)));
     }
     function getRotation(degree: number = 0){
         return Math.min((degree), Math.max(-(degree), Math.floor(scrollY / 100)));
@@ -46,7 +48,7 @@ function Hero() {
 
             <div className="rotate-6 hover:rotate-0 transition-all" style={{
                 position: "absolute",
-                right: "60%",
+                right: "65%",
                 width: cardWidth,
                 height: cardHeight,
                 transform: `scale(${getScale(0)}) rotate(6deg)`,
@@ -63,12 +65,12 @@ function Hero() {
              ><Photo url="art1.png"/></div>
             <div className="-rotate-6 hover:rotate-0 transition-all" style={{
                 position: "absolute",
-                right: "60%",
+                right: "65%",
                 width: cardWidth,
                 height: cardHeight,
-                transform: `scale(${getScale(300)}) rotate(-6deg)`,
+                transform: `scale(${getScale(height*.25)}) rotate(-6deg)`,
                 transition: 'transform 0.3s ease, opacity 0.3s ease',
-                opacity: `${getOpacity(400)}`,
+                opacity: `${getOpacity(height*.25)}`,
                 bottom:"10%",
             }}
             onMouseEnter={(e)=>{
@@ -79,12 +81,12 @@ function Hero() {
             }} ><Photo url="art2.png"/></div>
                 <div className="" style={{
                 position: "absolute",
-                left: "60%",
+                left: "65%",
                 width: cardWidth,
                 height: cardHeight,
-                transform: `scale(${getScale(500)}) rotate(-3deg)`,
+                transform: `scale(${getScale(height*.50)}) rotate(-3deg)`,
                 transition: 'transform 0.3s ease, opacity 0.3s ease',
-                opacity: `${getOpacity(600)}`,
+                opacity: `${getOpacity(height*.50)}`,
                 top:"10%",
             }}
             onMouseEnter={(e)=>{
@@ -96,12 +98,12 @@ function Hero() {
             ><Photo url="art3.png"/></div>
                 <div className=" transition-all"  style={{
                 position: "absolute",
-                left: "60%",
+                left: "65%",
                 width: cardWidth,
                 height: cardHeight,
-                transform: `scale(${getScale(700)}) rotate(12deg)`,
+                transform: `scale(${getScale(height*.75)}) rotate(12deg)`,
                 transition: 'transform 0.3s ease, opacity 0.3s ease',
-                opacity: `${getOpacity(800)}`,
+                opacity: `${getOpacity(height*.75)}`,
                 bottom:"10%",
             }}             
             onMouseEnter={(e)=>{
